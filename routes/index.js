@@ -10,5 +10,13 @@ router.get('/', homeController.home);
 
 router.get('/welcome', homeController.welcome);
 
+router.use('/users', require('./users'));
+
+router.use('/posts', require('./posts'));
+
+
+// for anty further routes, access from here
+// router.use('/routerName', require('./routerfile));
+
 //exporting this router so it will be available to index.js
 module.exports = router;
