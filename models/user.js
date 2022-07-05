@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-
+//to tell its a database model
 const User = mongoose.model('User', userSchema);
 
+//exporting 
 module.exports = User;
