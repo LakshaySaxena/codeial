@@ -7,6 +7,6 @@ const PostController = require('../controllers/posts_controller');
 
 //passport.checkAuthentication--> if user is signed in only thrn create form should be visible
 router.post('/create',passport.checkAuthentication,PostController.create);
-
+router.get('/destroy/:id', passport.checkAuthentication, PostController.destroy);
 
 module.exports = router;

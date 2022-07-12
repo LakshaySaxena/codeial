@@ -8,7 +8,8 @@
         <%= title%>
     </title>
     <link rel="stylesheet" href="/css/home.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
 </head>
 <body>
     <!-- it will be rendered through layout hence commenting -->
@@ -30,6 +31,11 @@
                     
                 <li>
                 <p>
+                    <% if (locals.user && locals.user.id == post.user.id){ %>
+                        <small>
+                            <a href="/posts/destroy/<%= post.id %>">X</a>
+                        </small>
+                        <% } %>
                         <%= post.content %>
                         <br>
                         <small>
@@ -45,13 +51,30 @@
                             </form>
     
                         <% } %>
-                    </div>
+
+                        <div class="post-comments-list">
+                            <ul id="post-comments-<%= post._id %>">
+                                <% for (comment of post.comments){%>
+                                    
+                                <p>
+                                    <%= comment.content %>
+                                    <br>
+                                    <small>
+                                        <%= comment.user.name %>
+                                    </small>
+                                </p>    
+                                <%} %>
+                            </ul>
+                        </div>
+                        </div>
+                  
 
                 </li>
                     
                 <%} %>
             </ul>
         </div>
+  
 
     </section>
 
