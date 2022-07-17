@@ -1,11 +1,25 @@
 const User = require('../models/user');
 module.exports.profile = function(req, res){
-   // res.end('<h1>User Profile</h1>');
-
-   return res.render('userProfile',{
-        title: "Lakshays Profile"
+   User.findById(req.params.id, function(err, user){
+       return res.render('userProfile', {
+           title: 'User Profile',
+           profile_user: user
+       });
    });
+
 }
+
+module.exports.update = function(req, res){
+   if(req.user.id == req.params.id){
+       User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+           return res.redirect('back');
+       });
+   }else{
+       return res.status(401).send('Unauthorized');
+   }
+}
+
+
 
 
 module.exports.signup= function(req,res){
@@ -57,6 +71,7 @@ module.exports.create = function(req, res){
 
 
 module.exports.createsession=function(req,res){
+   req.flash('sucess','logged in successfully');
    return res.redirect('/');
 }
 
@@ -64,5 +79,14 @@ module.exports.createsession=function(req,res){
 module.exports.DestroySession=function(req,res,next){
    req.logout(function(err) {
       if (err) { return next(err); }
+      req.flash('sucess','logged out successfully');
       res.redirect('/'); });
 }
+
+
+//depreciated code
+// module.exports.DestroySession=function(req,res,next){
+//       req.logout();
+//       req.flash('sucess','logged out successfully');
+//          res.redirect('/'); 
+//    }
