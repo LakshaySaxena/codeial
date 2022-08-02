@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
     <%- style %>
 </head>
 <body>
@@ -20,7 +24,7 @@
 
     <%- script %>
     <script>
-        <% if (flash.sucess && flash.sucess.length > 0) {%>
+        <% if (flash.sucess && flash.sucess.length > 0) { %>
             new Noty({
                 theme: 'sunset',
                 text: "<%= flash.sucess %>",
@@ -42,5 +46,6 @@
             }).show();    
         <%} %>
     </script>
+    
 </body>
 </html>
